@@ -11,7 +11,7 @@ application=Flask(__name__)
 application.add_url_rule('/', 'index', (lambda: header_text +
     say_hello() + instructions + footer_text))
 
-app=application
+#app=application
 
 ## Route for a home page
 
@@ -19,7 +19,7 @@ app=application
 ##def index():
 ##    return render_template('index.html') 
 
-@app.route('/predictdata',methods=['GET','POST'])
+#@app.route('/predictdata',methods=['GET','POST'])
 def predict_datapoint():
     if request.method=='GET':
         return render_template('home.html')
