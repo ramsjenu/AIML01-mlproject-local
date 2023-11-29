@@ -4,7 +4,7 @@ import sys
 import numpy as np 
 import pandas as pd
 import dill
-import pickle5 as pickle
+import pickle as pickle
 from sklearn.metrics import r2_score
 from sklearn.model_selection import GridSearchCV
 
