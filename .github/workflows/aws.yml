@@ -34,7 +34,7 @@ on:
 env:
   AWS_REGION: us-east-1                       # set this to your preferred AWS region, e.g. us-west-1
   ECR_REPOSITORY: vrams                       # set this to your Amazon ECR repository name
-# ECS_SERVICE: vrams-ecs-new                  # set this to your Amazon ECS service name
+  ECS_SERVICE: vrams-ecs-service                  # set this to your Amazon ECS service name
   ECS_CLUSTER: vrams-ecs-new                  # set this to your Amazon ECS cluster name
   ECS_TASK_DEFINITION: ./vrams-td-revision1.json              # set this to the path to your Amazon ECS task definition
                                                # file, e.g. .aws/task-definition.json
