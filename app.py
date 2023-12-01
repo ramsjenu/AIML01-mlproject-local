@@ -30,7 +30,7 @@ def predict_datapoint():
         )
         pred_df=data.get_data_as_data_frame()
         print(pred_df)
-        print("Before Prediction",port=8081)
+        print("Before Prediction")
 
         predict_pipeline=PredictPipeline()
         print(pred_df)
@@ -42,5 +42,5 @@ def predict_datapoint():
     
 
 if __name__=="__main__":
-    app.run(host="0.0.0.0")        
+    app.run(host='0.0.0.0', port=8081)        
    
