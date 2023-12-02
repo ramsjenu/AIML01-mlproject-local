@@ -12,7 +12,7 @@ pipeline {
       steps {
         script {
           sh 'pip install -r requirements.txt'
-          sh 'python app.py
+          sh 'python app.py'
       }
      }
    }
