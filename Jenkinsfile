@@ -4,7 +4,7 @@ pipeline {
         DOCKER_HUB_ID ="ramsjenu"
         IMAGE_REPO_NAME="student-performance"
         IMAGE_TAG="latest"
-        REPOSITORY_URI = "${DOCKER_HUB_ID_ID}/${IMAGE_REPO_NAME}"
+        REPOSITORY_URI = "${DOCKER_HUB_ID}/${IMAGE_REPO_NAME}"
     }
 
     stages {
