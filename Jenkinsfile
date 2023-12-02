@@ -12,8 +12,8 @@ pipeline {
       steps {
         script {
           sh 'source /usr/lib/python3.10/venv/.venv/bin/activate'
-          sh 'sudo pip install -r requirements.txt'
-          sh 'python app.py'
+          sh 'sudo pip install -r /var/lib/jenkins/workspace/student-performance/requirements.txt'
+          sh 'python /var/lib/jenkins/workspace/student-performance/app.py'
       }
      }
    }
