@@ -46,7 +46,7 @@ pipeline {
       steps{  
          script {
                  sh "docker pull 631204218401.dkr.ecr.eu-west-2.amazonaws.com/student-performance:latest"
-                 sh "docker run --name=vrmltest -d -p 8081:8080 --ipc="host"  631204218401.dkr.ecr.eu-west-2.amazonaws.com/student-performance:latest"
+                 sh "docker run --name=vrmltest -d -p 8081:8080 --ipc='host'  631204218401.dkr.ecr.eu-west-2.amazonaws.com/student-performance:latest"
          }
       } 
     }        
