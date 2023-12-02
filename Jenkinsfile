@@ -1,39 +1,40 @@
 pipeline {
-    agent any
     environment {
-        DOCKER_HUB_ID ="ramsjenu"
-        registryCredential = 'dockerhub_id'
-        IMAGE_REPO_NAME="student-performance"
-        IMAGE_TAG="latest"
-        REPOSITORY_URI = "${DOCKER_HUB_ID}/${IMAGE_REPO_NAME}"
-    }
+    registry = "ramsjenu/student-performance"
+    registryCredential = 'dockerhub_id'
+    dockerImage = ''
+}
 
-    stages {
-   
-    // Building Docker images
-      stage('Building image') {
-      steps{
-        script {
-          dockerImage = docker.build "${IMAGE_REPO_NAME}:${IMAGE_TAG}"
+agent any
+
+stages {
+    stage('Cloning our Git') {
+        steps {
+        git 'https://github.com/ramsjenu/AIML01-mlproject-local.git'
+    }
+}
+
+    stage('Building our image') {
+        steps{
+            script {
+                dockerImage = docker.build registry + ":$BUILD_NUMBER"
+            }
         }
-      }
     }
-   
-    // Uploading Docker images into AWS ECR
-    stage('Pushing to Docker-Hub') {
-      steps{  
-         script {
-                sh "docker tag ${IMAGE_REPO_NAME}:${IMAGE_TAG} ${REPOSITORY_URI}:$IMAGE_TAG"
-                sh "docker push ${REPOSITORY_URI}:$IMAGE_TAG"
-         }
-      }
+    stage('Deploy our image') {
+        steps{
+            script {
+                docker.withRegistry( '', registryCredential ) {
+                dockerImage.push()
+                }
+            }
+        }
     }
-    stage('Creating Container') {
-      steps{  
-         script {
-                 sh "docker run --name=studperfml -d -p 8081:8080 --ipc='host' $REPOSITORY_URI:$IMAGE_TAG"
-         }
-      } 
-    }        
-  }
+    
+    stage('Cleaning up') {
+        steps{
+            sh "docker rmi $registry:$BUILD_NUMBER"
+        }
+    }
+}
 }
