@@ -25,28 +25,27 @@ pipeline {
         }
   
     // Building Docker images
-    //stage('Building image') {
-    //  steps{
-    //    script {
-    //      dockerImage = docker.build "${IMAGE_REPO_NAME}:${IMAGE_TAG}"
-    //    }
-    //  }
-    //}
+      stage('Building image') {
+      steps{
+        script {
+          dockerImage = docker.build "${IMAGE_REPO_NAME}:${IMAGE_TAG}"
+        }
+      }
+    }
    
     // Uploading Docker images into AWS ECR
-    //stage('Pushing to ECR') {
-    //  steps{  
-    //     script {
-    //            sh "docker tag ${IMAGE_REPO_NAME}:${IMAGE_TAG} ${REPOSITORY_URI}:$IMAGE_TAG"
-    //            sh "docker push ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${IMAGE_REPO_NAME}:${IMAGE_TAG}"
-    //     }
-    //  }
-    //}
+    stage('Pushing to ECR') {
+      steps{  
+         script {
+                sh "docker tag ${IMAGE_REPO_NAME}:${IMAGE_TAG} ${REPOSITORY_URI}:$IMAGE_TAG"
+                sh "docker push ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${IMAGE_REPO_NAME}:${IMAGE_TAG}"
+         }
+      }
+    }
     stage('Creating Container') {
       steps{  
          script {
-                 sh "docker pull 631204218401.dkr.ecr.eu-west-2.amazonaws.com/student-performance:latest"
-                 sh "docker run --name=vrmltest -d -p 8081:8080 --ipc='host'  631204218401.dkr.ecr.eu-west-2.amazonaws.com/student-performance:latest"
+                 sh "docker run --name=studperfml -d -p 8081:8080 --ipc='host' $REPOSITORY_URI:$IMAGE_TAG"
          }
       } 
     }        
