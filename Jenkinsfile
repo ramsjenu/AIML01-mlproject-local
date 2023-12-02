@@ -2,6 +2,7 @@ pipeline {
     agent any
     environment {
         DOCKER_HUB_ID ="ramsjenu"
+        registryCredential = 'dockerhub_id'
         IMAGE_REPO_NAME="student-performance"
         IMAGE_TAG="latest"
         REPOSITORY_URI = "${DOCKER_HUB_ID}/${IMAGE_REPO_NAME}"
