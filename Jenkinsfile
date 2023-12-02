@@ -12,7 +12,7 @@ pipeline {
       steps {
         script {
           sh 'source /usr/lib/python3.10/venv/.venv/bin/activate'
-          sh 'pip install -r requirements.txt'
+          sh 'sudo pip install -r requirements.txt'
           sh 'python app.py'
       }
      }
