@@ -1,5 +1,5 @@
 pipeline {
-    agent {docker { image 'node:20.10.0-alpine3.18' }}
+    agent any
     environment {
         DOCKER_HUB_ID ="ramsjenu"
         IMAGE_REPO_NAME="student-performance"
