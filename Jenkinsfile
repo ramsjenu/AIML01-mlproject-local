@@ -16,7 +16,8 @@ stages {
             }
         }
     }
-    #stage('Deploy our image') {
+    
+    stage('Deploy our image') {
         steps{
             script {
                 docker.withRegistry( '', registryCredential ) {
