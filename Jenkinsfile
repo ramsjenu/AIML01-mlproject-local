@@ -1,5 +1,5 @@
 pipeline {
-    agent { dockerfile true}
+    agent any
     environment {
         AWS_ACCOUNT_ID="631204218401"
         AWS_DEFAULT_REGION="eu-west-2"
