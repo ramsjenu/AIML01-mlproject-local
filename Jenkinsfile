@@ -36,7 +36,7 @@ stages {
     stage('Creating Container') {
         steps{  
             script {
-                 sh "docker run --name=studperfml2 -d -p 8083:8080 $registry"
+                 sh "docker run --name=studperfml3 -it -p 8084:8080 $registry"
             }
         } 
     }        
