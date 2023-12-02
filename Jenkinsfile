@@ -6,7 +6,6 @@ pipeline {
         IMAGE_REPO_NAME="student-performance"
         IMAGE_TAG="latest"
         REPOSITORY_URI = "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${IMAGE_REPO_NAME}"
-        AWS_ECR_LOGIN_URI = "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com"
     }
     stages {
         
@@ -46,8 +45,7 @@ pipeline {
     stage('Creating Container') {
       steps{  
          script {
-            sh "docker run -d -p 8081:8080 --ipc="host" --name=vrmltest ${AWS_ECR_LOGIN_URI}/${IMAGE_REPO_NAME}:latest"
-            sh "docker system prune -f"
+                 sh "docker run -d -p 8081:8080 --ipc="host" --name=vrmltest ${REPOSITORY_URI}/:${IMAGE_TAG}"
          }
       } 
     }        
