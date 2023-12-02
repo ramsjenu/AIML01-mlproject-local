@@ -25,20 +25,6 @@ stages {
                 }
             }
         }
-    }
-    
-    //stage('Cleaning up') {
-    //    steps{
-    //   }
-    //        sh "docker rmi $registry:$BUILD_NUMBER"
-    //}
-    
-    stage('Creating Container') {
-        steps{  
-            script {
-                 sh "docker run --name=studperfml3 -d -p 8084:8080 $registry"
-            }
-        } 
-    }        
+    } 
 }
 }
