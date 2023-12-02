@@ -8,12 +8,7 @@ pipeline {
 agent any
 
 stages {
-    stage('Cloning our Git') {
-        steps {
-        git 'https://github.com/ramsjenu/AIML01-mlproject-local.git'
-    }
-}
-
+    
     stage('Building our image') {
         steps{
             script {
