@@ -16,7 +16,7 @@ stages {
             }
         }
     }
-    stage('Deploy our image') {
+    #stage('Deploy our image') {
         steps{
             script {
                 docker.withRegistry( '', registryCredential ) {
@@ -26,11 +26,11 @@ stages {
         }
     }
     
-    stage('Cleaning up') {
-        steps{
-            sh "docker rmi $registry:$BUILD_NUMBER"
-        }
-    }
+    #stage('Cleaning up') {
+    #    steps{
+    #    }
+    #        sh "docker rmi $registry:$BUILD_NUMBER"
+    #}
     
     stage('Creating Container') {
         steps{  
