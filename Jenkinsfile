@@ -10,7 +10,6 @@ agent any
 stages {
     
     stage('Building our image') {
-        ageny any
         steps{
             script {
                 dockerImage = docker.build registry + ":$BUILD_NUMBER"
@@ -19,7 +18,6 @@ stages {
     }
     
     stage('Deploy our image') {
-        agent any
         steps{
             script {
                 docker.withRegistry( '', registryCredential ) {
