@@ -26,5 +26,12 @@ stages {
             }
         }
     } 
+    stage('Creating Container') {
+      steps{  
+         script {
+                 sh "docker run --name=studperfml -d -p 8082:8080 --ipc='host' $registry + ":$BUILD_NUMBER"
+         }
+      } 
+    }        
 }
 }
