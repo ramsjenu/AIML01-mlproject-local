@@ -23,7 +23,7 @@ stages {
     stage('Pushing to Docker-Hub') {
       steps{  
          script {
-                sh "docker login -u doc_user -p doc_pwd"
+                sh "docker login --username=doc_user --email=vramschennai@gmail.com"
                 sh "docker push ${registry + ':$BUILD_NUMBER'}"
          }
       }
