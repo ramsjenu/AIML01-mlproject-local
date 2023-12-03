@@ -22,7 +22,7 @@ stages {
       steps{  
          script {
                 // sh "docker tag ${IMAGE_REPO_NAME}:${IMAGE_TAG} ${REPOSITORY_URI}:$IMAGE_TAG"
-                sh "docker login registryCredential"
+                sh "docker login -u $DOCKER_USER -p $DOCKER_PWD"
                 sh "docker push ${registry + ':$BUILD_NUMBER'}"
          }
       }
