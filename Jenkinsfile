@@ -27,12 +27,18 @@ stages {
             }
         }
     }
-
+    
+    stage('Pulling the latest image') {
+        steps{  
+            script { 
+                sh "docker pull $registry:$BUILD_NUMBER"
+            }
+        }
+    }
     stage('Creating Container') {
       steps{  
-         script {
-                 sh "docker pull $registry:$BUILD_NUMBER"
-                 sh "docker run --name=spml -d -p 8084:8080 --ipc='host' $registry:$BUILD_NUMBER"
+         script { 
+                 sh "docker run --name=spml -d -p 8082:8080 --ipc='host' $registry:$BUILD_NUMBER"
          }
       } 
     }        
