@@ -13,6 +13,7 @@ stages {
     
     stage('Building our image') {
         steps{
+            agent any
             script {
                 dockerImage = docker.build registry + ":$BUILD_NUMBER"
             }
