@@ -21,12 +21,12 @@ stages {
     
     // Uploading Docker images into AWS ECR
     stage('Pushing to Docker-Hub') {
-      steps{  
-         script {
-                sh "docker login --username=doc_user --email=vramschennai@gmail.com"
-                sh "docker push ${registry + ':$BUILD_NUMBER'}"
-         }
-      }
+        steps{  
+            script { 
+                docker.withRegistry( '', registryCredential ) 
+                { dockerImage.push() }
+            }
+        }
     }
 
     stage('Creating Container') {
