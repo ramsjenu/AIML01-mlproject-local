@@ -23,9 +23,7 @@ stages {
     stage('Pushing to Docker-Hub') {
         steps{  
             script { 
-                sh "docker context use desktop-linux"
-                docker.withRegistry( '', registryCredential ) 
-                { dockerImage.push() }
+                sh "docker push $registry + ':$BUILD_NUMBER'"
             }
         }
     }
