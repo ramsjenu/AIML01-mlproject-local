@@ -1,9 +1,6 @@
 pipeline {
     environment {
     registry = "ramsjenu/student-performance"
-    registryCredential = 'dockerhub_id'
-    doc_user = 'DOCKER_USER'
-    doc_pwd = 'DOCKER_PWD'
     dockerImage = ''
 }
 
