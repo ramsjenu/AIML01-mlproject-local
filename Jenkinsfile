@@ -17,15 +17,17 @@ stages {
         }
     }
     
-    stage('Deploy our image') {
-        steps{
-            script {
-                docker.withRegistry( '', registryCredential ) {
-                dockerImage.push()
-                }
-            }
-        }
-    } 
+    // Uploading Docker images into AWS ECR
+    stage('Pushing to Docker-Hub') {
+      steps{  
+         script {
+                // sh "docker tag ${IMAGE_REPO_NAME}:${IMAGE_TAG} ${REPOSITORY_URI}:$IMAGE_TAG"
+                sh "docker login registryCredential"
+                sh "docker push ${registry + ':$BUILD_NUMBER'"
+         }
+      }
+    }
+
     stage('Creating Container') {
       steps{  
          script {
