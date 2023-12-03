@@ -23,7 +23,7 @@ stages {
     stage('Pushing to Docker-Hub') {
         steps{  
             script { 
-                sh "docker push $registry + ':$BUILD_NUMBER'"
+                sh "docker push dockerImage"
             }
         }
     }
